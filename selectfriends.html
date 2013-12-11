@@ -11,6 +11,16 @@
 
 <BODY>
 <script type="text/javascript">
+var login_params=
+{
+	showTermsLink: 'false'
+	,height: 100
+	,width: 330
+	,containerID: 'componentDiv'
+	,buttonsStyle: 'fullLogo'
+	,autoDetectUserProviders: ''
+	,facepilePosition: 'none'
+}
 var fs_params=
 {
 	showEditLink: 'false'
@@ -22,6 +32,7 @@ var fs_params=
 </script>
 <div id="componentDiv"></div>
 <script type="text/javascript">
+   gigya.socialize.showLoginUI(login_params);
    gigya.socialize.showFriendSelectorUI(fs_params);
 </script>
 </BODY>
