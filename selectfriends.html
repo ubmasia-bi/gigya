@@ -4,22 +4,20 @@
 <script type="text/javascript" src="http://cdn.gigya.com/js/socialize.js?apiKey=3_iVUtq_XIFBBUSsfRYvA-68Lh9MRXvzrlC4Xta_yODI21dcgz6J_FHRSZJW49kQo_">
 {
 	siteName: 'ubmasia-bi.github.io (Testing site for registra)'
-	,enabledProviders: 'facebook,twitter,yahoo,messenger,google,linkedin'
+	,enabledProviders: 'linkedin,facebook,twitter,googleplus,yahoo,renren,QQ,Sina'
 }
 </script>
 </HEAD>
 
 <BODY>
 <script type="text/javascript">
-var login_params=
+var connect_params=
 {
 	showTermsLink: 'false'
-	,height: 100
-	,width: 330
+	,showEditLink: 'true'
+	,height: 70
+	,width: 175
 	,containerID: 'componentDiv'
-	,buttonsStyle: 'fullLogo'
-	,autoDetectUserProviders: ''
-	,facepilePosition: 'none'
 }
 var fs_params=
 {
@@ -31,8 +29,12 @@ var fs_params=
 }
 </script>
 <div id="componentDiv"></div>
+Connect to see friend list:
 <script type="text/javascript">
-   gigya.socialize.showLoginUI(login_params);
+   gigya.socialize.showAddConnectionsUI(connect_params);
+</script>
+<div id="componentDiv"></div>
+<script type="text/javascript">
    gigya.socialize.showFriendSelectorUI(fs_params);
 </script>
 </BODY>
