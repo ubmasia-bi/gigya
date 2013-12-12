@@ -1,43 +1,112 @@
-<HTML>
-<HEAD>
-<!-- socialize.js script should only be included once -->
-<script type="text/javascript" src="http://cdn.gigya.com/js/socialize.js?apiKey=3_iVUtq_XIFBBUSsfRYvA-68Lh9MRXvzrlC4Xta_yODI21dcgz6J_FHRSZJW49kQo_">
-{
-	siteName: 'ubmasia-bi.github.io (Testing site for registra)'
-	,enabledProviders: 'linkedin,facebook,twitter,googleplus,yahoo,renren,QQ,Sina'
-}
-</script>
-</HEAD>
+<html>
+<head>
+    <title>Friend Selector</title>
+    
+    <style>
+	 body {font-family:Arial;font-size: 12px; background-color:#fff; line-height:20px;margin:1px;}
+	 h5 { font-size: 12px; color: #6e6e6e; padding: 0px; margin: 0px; }
+     h6 { font-size: 14px; color: #6e6e6e; padding: 0px; margin: 0px; font-weight:bold; }
+	</style>
+	<SCRIPT type="text/javascript" lang="javascript" 
+	   src="http://cdn.gigya.com/js/socialize.js?apiKey=3_iVUtq_XIFBBUSsfRYvA-68Lh9MRXvzrlC4Xta_yODI21dcgz6J_FHRSZJW49kQo_">
+	  {
+		enabledProviders: "twitter, linkedin" // we would like to include only providers that support notifications
+		,cid: "Notification page"
+	  }
+	</SCRIPT>
+	
+	<script>
+                
+        function onLoad()
+        {
+            // get user info
+            gigya.socialize.getUserInfo({callback:renderUI});	    
+            
+            // register for connect status changes
+            gigya.socialize.addEventHandlers({ onConnectionAdded: renderUI, onConnectionRemoved: renderUI });
+            
+        }
+    </script>
+    
 
-<BODY>
-<script type="text/javascript">
-var connect_params=
-{
-	showTermsLink: 'false'
-	,showEditLink: 'true'
-	,height: 70
-	,width: 175
-	,containerID: 'componentDiv'
-}
-var fs_params=
-{
-	showEditLink: 'false'
-	,height: 360
-	,width: 400
-	,containerID: 'componentDiv'
-	,showCaption: 'true'
-}
-</script>
-<div id="componentDiv"></div>
-Connect to see friend list:
-<script type="text/javascript">
-   gigya.socialize.showAddConnectionsUI(connect_params);
-</script>
-<div id="fscomponentDiv"></div>
-<script type="text/javascript">
-   gigya.socialize.showFriendSelectorUI(fs_params);
-</script>
+	<script type="text/javascript">
 
-</BODY>
+        var user = null;
+		function renderUI(res)
+		{		    
+            if(res.user!=null && res.user.isConnected)
+            {   
+                user = res.user ;    
+                // Show friend-selector component
+                document.getElementById("friends").style.display = "block";
+		        var params =
+		        {
+		            containerID:"friends",
+		            onSelectionDone:onSelectionDone
+		        }
+			    gigya.socialize.showFriendSelectorUI(params);
+                
+            } else {
+                document.getElementById("friends").style.display = "none";
+            }			
+		}
 
-</HTML>
+		// If the user clicked "OK" in the friend-selector component
+		// Send a notification to the selected friends.
+		function onSelectionDone(response)
+		{
+			var subject = "A message from " + user.nickname;
+			var body = "I think 'Home' movie is amazing. Check it out: http://bit.ly/aCVmg";
+			if (response.friends.getSize() > 0)
+			{
+			    var params = 
+			    {
+			        callback:sendNotification_callback,
+			        subject:subject,
+			        body:body,
+			        recipients:response.friends
+			    };
+				gigya.socialize.sendNotification(params)
+		    }
+		}
+
+		// Display a status message according to the response from sendNotification
+		function sendNotification_callback(response)
+		{
+			switch (response.errorCode)
+			{
+				case 0:
+					document.getElementById('status').style.color = "green";
+					document.getElementById('status').innerHTML = "Notification sent.";
+					break;
+				default:
+					document.getElementById('status').style.color = "red";
+					document.getElementById('status').innerHTML = 
+					    "Unable to send notification. status=" 
+						+ response.errorCode + "; " + response.errorMessage;
+			}
+		}
+    </script>
+</head>
+<body onload="onLoad()">
+	<h5>Step 1: Connect</h5>
+	<div id="divConnect"></div>
+    <script type="text/javascript">
+	        // show 'Add Connections' Plugin in "divConnect"
+	        gigya.socialize.showAddConnectionsUI({ 
+				height:65
+				,width:175
+				,showTermsLink:false // remove 'Terms' link
+				,hideGigyaLink:true // remove 'Gigya' link
+				//requiredCapabilities: "notifications", // we would like to include only providers that support notifications
+				,containerID: "divConnect" // The component will embed itself inside the divConnect Div 
+			});
+    </script>
+
+    <br />
+    <h5>Step 2: Select your Friends</h5>
+    Select the friends to whom you would like to send a notification, and click "ok"<br />
+    <div id="friends" style="display:none"></div>
+    <div id="status"></div>
+</body>
+</html>
