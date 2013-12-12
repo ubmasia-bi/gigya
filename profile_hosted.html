@@ -15,7 +15,13 @@
 		<a href="#" onclick="gigya.accounts.logout({callback:onLogout});">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		</br></br></br>
 		<a href="http://ubmasia-bi.github.io/gigya/selectfriends.html" >Send note to friends</a>
-
+		</br></br></br>
+	
+		<script type="text/javascript">
+		   var params = {categoryID:228637896,width:600,height:450,containerID:"container",cid:""};
+		   gigya.chat.showChatUI(params);
+		</script>   
+		
 	</span>
 
 <script>
@@ -27,12 +33,6 @@
 			alert('Error :' + response.errorMessage); 
 		} 
 	}
-</script>
-
-<div id="container"></div>
-<script type="text/javascript">
-   var params = {categoryID:228637896,width:300,height:450,containerID:"container",cid:""};
-   gigya.chat.showChatUI(params);
-</script>                 
+</script>              
 
 </body></html>
