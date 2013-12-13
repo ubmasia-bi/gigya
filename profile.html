@@ -14,6 +14,43 @@
 		<a href="selectfriends.html" >Send a note to friends</a>
                 </br></br></br>
 		<a href="#" onclick="gigya.accounts.logout({callback:onLogout});">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		</br></br></br>
+		
+<script type="text/javascript">
+
+var showFollowBarUI_params=
+{ 
+	containerID: 'FollowBar',
+	iconSize: 32,
+	buttons: [
+	{ 
+		provider: 'facebook',
+		actionURL: 'https://www.facebook.com/pages/Tissue-World',
+		action: 'dialog'
+	},
+	{ 
+		provider: 'twitter',
+		title: 'Tissue World Asia',
+		action: 'dialog',
+		followUsers: 'tissueworldnews'
+	},
+	{ 
+		provider: 'Youtube',
+		actionURL: 'http://www.youtube.com/TissueWorldNews',
+		title: 'Tissue World'
+	},
+	{ 
+		provider: 'linkedin',
+		actionURL: 'http://www.linkedin.com/groups/Tissue-World-4703208',
+		title: 'Tissue World LinkedIn'
+	}
+	]
+}
+</script>
+<div id="FollowBar"></div>
+<script type="text/javascript">
+   gigya.socialize.showFollowBarUI(showFollowBarUI_params);
+</script>
 	</span>
 
 	<!-- ScreenSet code begin -->
