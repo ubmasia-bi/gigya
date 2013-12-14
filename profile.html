@@ -16,6 +16,22 @@
 		<a href="#" onclick="gigya.accounts.logout({callback:onLogout});">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		</br></br></br>
 		
+		<script>
+		function printResponse(response) {  
+		    if ( response.errorCode == 0 ) {             
+		        var user = response['user'];
+		        var msg = 'UID for '+user['nickname'] + ' is ' +user['UID'];
+		        alert(msg);
+		    }
+		    else {
+		        alert('Error :' + response.errorMessage);
+		    }  
+		}
+		</script>
+		<a href="#" onclick="gigya.socialize.getUserInfo({callback:printResponse});">See my UID</a>
+		</br></br></br>
+		
+		
 <script type="text/javascript">
 
 var showFollowBarUI_params=
