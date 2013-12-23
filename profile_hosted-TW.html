@@ -1,0 +1,41 @@
+<html>
+<head>
+    <title>Gigya Registration Test</title>
+         <SCRIPT type="text/javascript" lang="javascript" 
+           src="http://cdn.gigya.com/js/socialize.js?apiKey=3_iVUtq_XIFBBUSsfRYvA-68Lh9MRXvzrlC4Xta_yODI21dcgz6J_FHRSZJW49kQo_"></SCRIPT>
+</head>
+<body>
+    <span style="font-size: 16px;font-weight: bold;letter-spacing: 1px;float: left;font-family: Arial;">
+
+                <a href="#" onclick="gigya.accounts.showScreenSet({screenSet:'Login-web', mobileScreenSet:'Mobile-login'});">Login</a>&nbsp;&nbsp;|&nbsp;&nbsp; 
+                <a href="#" onclick="gigya.accounts.showScreenSet({screenSet:'Login-web', mobileScreenSet:'Mobile-login', startScreen:'gigya-register-screen'});">Register</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                </br></br></br>
+                <a href="#" onclick="gigya.accounts.showScreenSet({screenSet:'Test-Login', mobileScreenSet:'Mobile-login', startScreen:'gigya-register-screen'});">Register (Test Login)</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                </br></br></br>
+                
+                <a href="#" onclick="gigya.accounts.showScreenSet({screenSet:'Profile-web', mobileScreenSet:'Mobile-profile'});">Edit Your Profile</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                </br></br></br>
+                <a href="#" onclick="gigya.accounts.logout({callback:onLogout});">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                </br></br></br>
+                <a href="http://ubmasia-bi.github.io/gigya/selectfriends.html" >Send note to friends</a>
+                </br></br></br>
+        
+                <script type="text/javascript">
+                   var params = {categoryID:228637896,width:600,height:450,containerID:"container",cid:""};
+                   gigya.chat.showChatUI(params);
+                </script>   
+                
+        </span>
+
+<script>
+        function onLogout(response) {   
+                if ( response.errorCode == 0 ) {                
+                        alert('You are now logged out'); 
+                } 
+                else { 
+                        alert('Error :' + response.errorMessage); 
+                } 
+        }
+</script>              
+
+</body></html>
