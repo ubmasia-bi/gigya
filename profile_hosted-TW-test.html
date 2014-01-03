@@ -42,6 +42,19 @@
 		    }  
 		}
 		</script>
+		
+
+		function loginEventHandler(eventObj) {
+		alert(eventObj.profile.firstName + " has logged-in");
+		}
+		
+		gigya.accounts.addEventHandlers({
+			onLogin:loginEventHandler,
+			    onLogout:logoutEventHandler
+		}
+
+
+		
 		<a href="#" onclick="gigya.socialize.getUserInfo({callback:printResponse});">See my UID</a>
 		</br></br></br>
 		
