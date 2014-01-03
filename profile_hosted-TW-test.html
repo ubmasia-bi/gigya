@@ -43,7 +43,7 @@
 		}
 		</script>
 		
-
+		<script>
 		function loginEventHandler(eventObj) {
 		alert(eventObj.profile.firstName + " has logged-in");
 		}
@@ -52,7 +52,7 @@
 			onLogin:loginEventHandler,
 			    onLogout:logoutEventHandler
 		}
-
+		</script>
 
 		
 		<a href="#" onclick="gigya.socialize.getUserInfo({callback:printResponse});">See my UID</a>
